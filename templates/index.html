@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script>
+  var bool = false;
+function validate() {
+    var user = document.getElementById("poly").value;
+    var user2 = document.getElementById("poly");
+    var errLabel = document.getElementById("errLabel");
+    var re = /((\+|\-)?[2-9]*(\*|\\)[a-zA-z])+$/;
+    if (re.test(user)) {
+        user2.style.border = "green solid 2px";
+        return true;
+    }
+    else {
+        user2.style.border = "red solid 2px";
+        errLabel.style.visibility="visible";
+        return false;
+    }
+}
+var count1=1;
+var h ;
+var a ;
+var fieldsetList; 
+
+function checkValidConstraint()
+{
+  var x= 0;
+    var divID = document.getElementById("fields");
+    var inputDiv = divID.getElementsByTagName("input");
+    var firstElement = inputDiv[0];
+    var firstElementValue = firstElement.value;
+    var lengthh = inputDiv.length; 
+    var lastElement = inputDiv[lengthh-1];
+    var lastElementValue = lastElement.value;
+    var re = /((\+|\-)?[2-9]*(\*|\\)[a-zA-z])+[<>](=)?[2-9][0-9]*$/;
+    if(lengthh == 2)
+    {
+        if(re.test(firstElementValue))
+        {
+          firstElement.style.border = "green solid 2px";
+          bool = true;
+        }
+        else{
+          firstElement.style.border = "red solid 2px";
+          firstElement.placeholder = "please enter valid contraint ex: 4x<0";
+          bool = false;
+      
+        }
+    }
+    else if(lengthh > 2)
+    {
+        if(re.test(lastElementValue))
+        {
+          lastElement.style.border="";
+          bool = true;
+          return true;
+        }
+        else 
+        {
+          lastElement.style.border ="red solid 2px";
+          lastElement.placeholder = "please enter valid constraint ex: 4x<0";
+          bool = false;
+          return false;
+        }
+    }
+      
+}
+function Add(fields) {
+  if(bool)
+  {
+    var list1 = document.getElementById("formID").classList;
+    list1.add("form");
+    list1.remove("formd");
+    count1++;
+    constra= document.getElementById("fieldset").cloneNode(true);
+    constra.name=count1;
+    constra.id += count1 ;
+    constra.getElementsByTagName("input")[0].name +=count1;
+    constra.getElementsByTagName("input")[0].id +=count1;
+    h=constra.getElementsByTagName("input")[0].id;
+    constra.style.visibility="visible";
+    document.getElementById("fields").appendChild(constra);
+    console.log(constra)
+  }
+        }
+/*function validate1() {
+     alert(elem.parentNode.name);
+    var user = document.getElementById(`constra${elem.parentNode.name}`).value;
+    var user2 = document.getElementById(`constra${elem.parentNode.name}`);
+    console.log(document.getElementById(`constra${elem.parentNode.name}`));
+    var re =///((\+|\-)?[2-9]*(\*|\\)[a-zA-z])+(\>|\<|\<\=|\>\=)[1-9][0-9]*$/;
+    if (re.match(user)) {
+    user2.style.border = "green solid 2px";
+        return true;
+    }
+    else {
+    user2.style.border = "red solid 2px";
+
+        return false;
+        
+     }
+}*/
+</script>
+<style>
+    .get-in-touch {
+      max-width: 800px;
+      margin: 50px auto;
+      position: relative;
+    
+    }
+    .get-in-touch .title {
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 3.2em;
+      line-height: 48px;
+      padding-bottom: 48px;
+         color: #5543ca;
+        background: #5543ca;
+        background: -moz-linear-gradient(left,#f4524d  0%,#5543ca 100%) !important;
+        background: -webkit-linear-gradient(left,#f4524d  0%,#5543ca 100%) !important;
+        background: linear-gradient(to right,#f4524d  0%,#5543ca  100%) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+    }
+    
+    .contact-form .form-field {
+      position: relative;
+      margin: 32px 0;
+    }
+    .contact-form .input-text {
+      display: block;
+      width: 100%;
+      height: 36px;
+      border-width: 0 0 2px 0;
+      border-color: #5543ca;
+      font-size: 18px;
+      line-height: 26px;
+      font-weight: 400;
+    }
+    .contact-form .input-text:focus {
+      outline: none;
+    }
+    .contact-form .input-text:focus + .label,
+    .contact-form .input-text.not-empty + .label {
+      -webkit-transform: translateY(-24px);
+              transform: translateY(-24px);
+    }
+    .contact-form .label {
+      position: absolute;
+      left: 20px;
+      bottom: 11px;
+      font-size: 18px;
+      line-height: 26px;
+      font-weight: 400;
+      color: #5543ca;
+      cursor: text;
+      transition: -webkit-transform .2s ease-in-out;
+      transition: transform .2s ease-in-out;
+      transition: transform .2s ease-in-out, 
+      -webkit-transform .2s ease-in-out;
+    }
+    .contact-form .submit-btn {
+      display: inline-block;
+      background-color: #000;
+       background-image: linear-gradient(125deg,#a72879,#064497);
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 16px;
+      padding: 8px 16px;
+      border: none;
+      width:200px;
+      cursor: pointer;
+    }
+    
+    
+</style>
+</head>
+<body>
+
+
+    <section class="get-in-touch">
+        <h1 class="title">Intelligent Algorithm</h1>
+        <form method="POST" class="contact-form row" id="formID" class="formd">
+          {% csrf_token %}
+                <div class="col-6">
+
+                    <div class="form-field">
+                        f(x)=<input type="text" id="poly" name="poly" class="input-text js-input" placeholder="Polynomial" required></br>
+                        <p id="errLabel" style="visibility: hidden;">please enter valid function</p>
+                          <!--  <button type="button"  name="check"  id="check" onclick="validate();">check</button> -->
+                    </div>
+
+                    <div class="form-field" id="fields">
+                        <p>Please add first constraint , then Press ADD constraint each time you want to enter a new constraint</p></br>
+                        <input type="text" id="constra" name="constraint1" onclick="validate();" class="input-text js-input" placeholder="please enter first constraint ex:4x=0 " required>
+                    </br>
+                        <button type="button" name="check1"  id="check1" onclick="checkValidConstraint(); Add(this);">Add constraint</button>
+                      <fieldset id="fieldset" class="hidd" style="visibility: hidden" name="0" >
+                                <input type="text" id="constra" name="constraint" class="input-text js-input" placeholder="Constraint"/>
+                                <p id="p"></p>
+                            <!-- <button type="button" name="check"  id="check" onclick="validate1(this);" >check</button> -->
+                     </fieldset> 
+                    </div>
+
+                </div>
+
+                <div class="col-6">
+                    <textarea name="result" rows="15" cols="70" style="margin-top: 10%;">{{r}}{{r1}}{{r2}}{{r3}}</textarea></br></br>
+                    <button type="submit" name="run"  id="run" class="submit-btn">RUN</button>
+                </div>
+
+            </div>
+            
+        </form>
+    </section>
+
+
+</body>
+</html>
